@@ -1,0 +1,10 @@
+(function(){const e=document.createElement("link").relList;if(e&&e.supports&&e.supports("modulepreload"))return;for(const t of document.querySelectorAll('link[rel="modulepreload"]'))s(t);new MutationObserver(t=>{for(const n of t)if(n.type==="childList")for(const c of n.addedNodes)c.tagName==="LINK"&&c.rel==="modulepreload"&&s(c)}).observe(document,{childList:!0,subtree:!0});function o(t){const n={};return t.integrity&&(n.integrity=t.integrity),t.referrerPolicy&&(n.referrerPolicy=t.referrerPolicy),t.crossOrigin==="use-credentials"?n.credentials="include":t.crossOrigin==="anonymous"?n.credentials="omit":n.credentials="same-origin",n}function s(t){if(t.ep)return;t.ep=!0;const n=o(t);fetch(t.href,n)}})();function a(){const r="abcdefghijklmnopqrstuvwxyz",e=Math.floor(Math.random()*r.length);return r[e]}async function l(){const r=a();try{const e=await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${r}`);if(!e.ok)throw new Error("API response not ok");return(await e.json()).drinks||[]}catch(e){throw console.error("Fetch error:",e),e}}function u(r,e){if(e.innerHTML="",!r.length){e.innerHTML="<p>No cocktails found!</p>";return}r.forEach(o=>{const{strDrink:s,strDrinkThumb:t,strInstructions:n,strIngredient1:c,strIngredient2:i}=o,d=`
+      <div class="recipe-card">
+        <img src="${t}" alt="${s}">
+        <div class="card-content">
+        <h2>${s}</h2>
+        <p><strong>Ingredients:</strong> ${c}${i?", "+i:""}</p>
+        <p><strong>Instructions:</strong> ${n}</p>
+        </div>
+      </div>
+    `;e.insertAdjacentHTML("beforeend",d)})}document.addEventListener("DOMContentLoaded",()=>{const r=document.getElementById("getRecipes"),e=document.getElementById("waiting"),o=document.getElementById("oops"),s=document.getElementById("recipeShelf");function t(){e.classList.remove("hide"),o.classList.add("hide"),s.innerHTML=""}function n(i){e.classList.add("hide"),o.classList.remove("hide"),o.textContent=i}async function c(){t();try{const i=await l();u(i,s),e.classList.add("hide")}catch{n("Oh no! Couldn’t get cocktails. Try again!")}}r.addEventListener("click",c),c()});

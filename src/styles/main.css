@@ -1,0 +1,102 @@
+/* Make the toy box look nice */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #e6f3ff;
+  margin: 0;
+}
+
+/* Center everything */
+.box {
+  max-width: 1000px;
+  margin: 20px auto;
+  text-align: center;
+}
+
+
+h1 {
+  font-size: 36px;
+  color: #333;
+}
+
+/* Fun button */
+button {
+  background-color: #ff6347;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #e5533d;
+}
+
+/* Waiting and oops signs */
+#waiting, #oops {
+  font-size: 20px;
+  margin: 20px;
+}
+
+#waiting {
+  color: #4682b4;
+}
+
+#oops {
+  color: #ff0000;
+}
+
+.hide {
+  display: none;
+}
+
+/* Shelf for recipes */
+.shelf {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+/* Recipe cards */
+.recipe-card {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+.recipe-card:hover {
+  transform: scale(1.05);
+}
+
+.recipe-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.card-stuff {
+  padding: 15px;
+}
+
+.card-stuff h2 {
+  font-size: 20px;
+  margin: 0 0 10px;
+}
+
+.card-stuff p {
+  font-size: 14px;
+  color: #555;
+}
+
+
+@media (max-width: 500px) {
+  .shelf {
+    grid-template-columns: 1fr;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+}
